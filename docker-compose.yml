@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+    track-yo-macro:
+        container_name: 'track-yo-macro'
+        build:
+          context: server
+        volumes: 
+            - ./:/app
+        ports:
+            - 8080:8080
+            - 2345:2345
+        command: dlv exec --accept-multiclient --log --headless --continue --listen :2345 --api-version 2 /usr/local/bin/track-yo-macro
+        env_file: .env
+        depends_on:
+          - track-yo-macro-mongo
+
+    track-yo-macro-mongo:
+        container_name: "track-yo-macro-mongo"
+        image: mongo:4.0.23-xenial
+        hostname: track-yo-macro-mongo
+        ports:
+            - 27017:27017
+        volumes:
+            - ./mongo:/data/db
+        env_file: .env
+        restart: unless-stopped
