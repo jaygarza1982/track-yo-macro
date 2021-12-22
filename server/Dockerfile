@@ -12,6 +12,7 @@ RUN go install github.com/cosmtrek/air@latest && \
 
 # Dependencies
 COPY ./go.mod .
+# TODO: Uncomment this when adding modules such as gin
 # COPY ./go.sum .
 RUN go mod download && go mod verify
 
