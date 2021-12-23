@@ -9,20 +9,30 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+const apiCache = 'api-cache-v1';
+
+// Fetch logic to fetch, then update cache
+// If we cannot fetch, look in cache
 self.addEventListener('fetch', function (event) {
   event.respondWith(
-    caches.open('mysite-dynamic').then(function (cache) {
-      return cache.match(event.request).then(function (response) {
-        // Debug statements
-        if (response) console.log('From cache', event.request.url);
-        if (!response) console.log(event.request.url, 'was not found in cache');
+    fetch(event.request).then(resp => {
+      console.log('fetched', event.request.url);
 
-        return response || fetch(event.request).then(function (response) {
-          console.log('Caching', event.request.url);
-          cache.put(event.request, response.clone());
-          return response;
-        }).catch(err => console.log('Could not fetch', err));
+      // First we cache, then we return response
+      return caches.open(apiCache).then(cache => {
+        console.log('Caching this response', event.request.url);
+        cache.put(event.request, resp.clone());
+        return resp;
+      }).catch(err => { console.log('Could not open cache', err); });
+    }).catch(err => {
+      console.log('Could not fetch', event.request.url);
+
+      // Try to find in cache
+      return caches.open(apiCache).then(cache => {
+        return cache.match(event.request).then(cacheResp => {
+          return cacheResp;
+        });
       });
-    }).catch(err => console.log('Could not open cache', err))
+    })
   );
 });
