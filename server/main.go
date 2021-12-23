@@ -1,16 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"time"
+	"os"
+
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-gonic/gin"
 )
 
-func greet(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World! %s", time.Now())
-}
-
 func main() {
-	http.HandleFunc("/", greet)
-	http.ListenAndServe(":8080", nil)
+	ginServer := gin.Default()
+
+	sessionSecret := os.Getenv("SESSION_SECRET")
+	store := cookie.NewStore([]byte(sessionSecret))
+	ginServer.Use(sessions.Sessions("session", store))
+
+	ginServer.GET("/api/", func(c *gin.Context) {
+		status := "Status is OK"
+		c.JSON(200, gin.H{"message": status})
+	})
+
+	ginServer.Run(":8080")
 }
