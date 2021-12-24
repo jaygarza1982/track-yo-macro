@@ -26,6 +26,8 @@ func main() {
 
 	ginServer.GET("/api/food/list", controllers.ListFood(config))
 	ginServer.POST("/api/food/add", controllers.AddFood(config))
+	ginServer.GET("/api/consumed/list", controllers.ListConsumed(config))
+	ginServer.POST("/api/consumed/add", controllers.AddConsumed(config))
 
 	ginServer.Run(":8080")
 }

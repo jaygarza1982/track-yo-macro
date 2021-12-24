@@ -8,6 +8,7 @@ import (
 	"github.com/jaygarza1982/track-yo-macro/server/config"
 	"github.com/jaygarza1982/track-yo-macro/server/models"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func ListFood(config *config.Config) func(ctx *gin.Context) {
@@ -45,6 +46,8 @@ func AddFood(config *config.Config) func(ctx *gin.Context) {
 		if err := ctx.BindJSON(&food); err != nil {
 			panic(err)
 		}
+
+		food.ID = primitive.NewObjectID()
 
 		res, err := foodCollection.InsertOne(context.TODO(), food)
 
