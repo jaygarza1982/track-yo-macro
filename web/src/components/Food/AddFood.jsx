@@ -4,22 +4,35 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import React from 'react';
 import { useState } from 'react';
+import FoodEdit from './FoodEdit';
+import axios from 'axios';
 
 const AddFood = () => {
 
     const [addFoodOpen, setAddFoodOpen] = useState(false);
+
+    const handleClose = () => { setAddFoodOpen(false); }
 
     return (
         <div className='add-food'>
             <IconButton onClick={() => { setAddFoodOpen(true); }}>
                 <AddCircleOutline htmlColor='#0072e5' />
             </IconButton>
-            <Dialog open={addFoodOpen} onClose={() => { setAddFoodOpen(false); }}>
+            <Dialog open={addFoodOpen} onClose={handleClose}>
                 <DialogTitle>
                     Add Food
                 </DialogTitle>
                 <Paper>
-                    {/* TODO: Food info goes here */}
+                    <FoodEdit
+                        submit={async values => {
+                            try {
+                                await axios.post('/api/food/add', values);
+                            } catch (error) {
+                                console.log('Could not submit food edit', error);
+                            }
+                        }}
+                        submitCallback={handleClose}
+                    />
                 </Paper>
             </Dialog>
         </div>
