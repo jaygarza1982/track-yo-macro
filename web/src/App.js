@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react';
 import './App.css';
-import axios from 'axios';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+
+import Home from './components/Home/Home';
+import NavContainer from './components/NavButtons/NavContainer';
 
 function App() {
-
-  const [food, setFood] = useState([]);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { data } = await axios.get('/api/food/list');
-      setFood(data);
-      console.log('data from api', data);
-    }
-    fetch();
-  }, [])
-
   return (
-    <div className="App">
-      {
-        food?.map(f => <div key={f._id}>{f.name}</div>)
-      }
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+      <NavContainer />
+    </Router>
   );
 }
 
