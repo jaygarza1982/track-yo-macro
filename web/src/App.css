@@ -32,7 +32,11 @@ h1 {
 }
 
 .add-food {
-  position: absolute;
+  position: fixed;
   bottom: 60px;
-  right: 10px;
+  right: 30px;
+}
+
+.food-list {
+  margin-bottom: 57px;
 }
