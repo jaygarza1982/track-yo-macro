@@ -19,7 +19,7 @@ const NavContainer = props => {
                                 </IconButton>
                             </div>
                             <div className='nav-button'>
-                                <IconButton>
+                                <IconButton onClick={() => { navigate('/consumed'); }}>
                                     <FoodBank />
                                 </IconButton>
                             </div>

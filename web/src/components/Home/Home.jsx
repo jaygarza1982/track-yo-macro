@@ -1,26 +1,12 @@
 import React from 'react';
-import CustomList from '../CustomList/CustomList';
-import useFetch from '../Hooks/useFetch';
+import AddFood from '../Food/AddFood';
+import FoodList from '../Food/FoodList';
 
 const Home = () => {
-
-    const [foods, foodsFailed] = useFetch('/api/food/list');
-
     return (
         <div className='home'>
-            {!foodsFailed &&
-                <CustomList
-                    items={
-                        foods.map(food => {
-                            return {
-                                display: food.name,
-                                key: food._id,
-                                action: () => { console.log('Food clicked', food); }
-                            }
-                        })
-                    }
-                />
-            }
+            <FoodList />
+            <AddFood />
         </div>
     )
 }

@@ -8,12 +8,14 @@ import {
 
 import Home from './components/Home/Home';
 import NavContainer from './components/NavButtons/NavContainer';
+import Consumed from './components/Consumed/Consumed';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/consumed' element={<Consumed />} />
       </Routes>
       <NavContainer />
     </Router>
