@@ -5,18 +5,20 @@ export default url => {
     const [returnData, setData] = useState([]);
     const [failed, setFailed] = useState(false);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await axios.get(url);
+    const load = async () => {
+        try {
+            const { data } = await axios.get(url);
 
-                setData(data);
-            } catch (error) {
-                console.log('Failed to fetch', error);
-                setFailed(true);
-            }
-        })();
+            setData(data);
+        } catch (error) {
+            console.log('Failed to fetch', error);
+            setFailed(true);
+        }
+    }
+
+    useEffect(() => {
+        load();
     }, []);
 
-    return [returnData, failed];
+    return [returnData, failed, load];
 }

@@ -7,7 +7,7 @@ import { useState } from 'react';
 import FoodEdit from './FoodEdit';
 import axios from 'axios';
 
-const AddFood = () => {
+const AddFood = ({ reloadFoods }) => {
 
     const [addFoodOpen, setAddFoodOpen] = useState(false);
 
@@ -27,6 +27,7 @@ const AddFood = () => {
                         submit={async values => {
                             try {
                                 await axios.post('/api/food/add', values);
+                                if (reloadFoods) reloadFoods();
                             } catch (error) {
                                 console.log('Could not submit food edit', error);
                             }
