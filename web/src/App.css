@@ -40,3 +40,7 @@ h1 {
 .food-list {
   margin-bottom: 57px;
 }
+
+.custom-list-item {
+  margin: 8px 0px 8px 0px;
+}

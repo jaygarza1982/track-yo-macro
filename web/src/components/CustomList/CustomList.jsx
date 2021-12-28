@@ -1,18 +1,27 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { ListItem, ListItemButton, ListItemText } from '@mui/material';
+import { Divider, ListItem, ListItemButton } from '@mui/material';
 
-const CustomList = ({ items }) => {
+const CustomList = ({ items, secondaryAction }) => {
     return (
         <Box>
             {
                 items?.map(item => {
                     return (
-                        <ListItem key={item.key} component='div' disablePadding>
-                            <ListItemButton onClick={item?.action || (() => {})}>
-                                <ListItemText primary={item?.display || 'N/A'} />
-                            </ListItemButton>
-                        </ListItem>
+                        <div key={item.key} className='custom-list-item'>
+                            <ListItem
+                                component='div'
+                                disablePadding
+                                secondaryAction={item?.secondaryAction || <></>}
+                            >
+                                <ListItemButton onClick={item?.action || (() => { })}>
+                                    <div className='custom-list-item'>
+                                        { item?.display || 'N/A' }
+                                    </div>
+                                </ListItemButton>
+                            </ListItem>
+                            <Divider />
+                        </div>
                     )
                 })
             }
