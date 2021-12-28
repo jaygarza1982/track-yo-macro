@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomList from '../CustomList/CustomList';
+import ConsumedInfo from './ConsumedInfo';
 
 const ConsumedList = ({ foods, consumed }) => {
     return (
@@ -14,6 +15,7 @@ const ConsumedList = ({ foods, consumed }) => {
                             key: c._id,
                             // TODO: Dialog box with consume info
                             action: () => { console.log('Consumed clicked', c); },
+                            secondaryAction: <ConsumedInfo food={mappedFood} />
                         }
                     })
                 }
