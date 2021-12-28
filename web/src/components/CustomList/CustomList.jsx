@@ -2,9 +2,9 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import { Divider, ListItem, ListItemButton } from '@mui/material';
 
-const CustomList = ({ items, secondaryAction }) => {
+const CustomList = ({ items }) => {
     return (
-        <Box>
+        <Box className='custom-list'>
             {
                 items?.map(item => {
                     return (
