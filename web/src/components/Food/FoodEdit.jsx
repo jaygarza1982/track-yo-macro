@@ -7,10 +7,10 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
     const formik = useFormik({
         initialValues: {
             name: food?.name || '',
-            calories: food?.calories || '',
-            protein: food?.protein || '',
-            fat: food?.fat || '',
-            carbs: food?.carbs || '',
+            calories: food?.calories || 0,
+            protein: food?.protein || 0,
+            fat: food?.fat || 0,
+            carbs: food?.carbs || 0,
             description: food?.description || '',
         },
         onSubmit: values => {

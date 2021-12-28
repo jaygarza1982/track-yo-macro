@@ -18,6 +18,8 @@ const AddFood = ({ reloadFoods }) => {
             <IconButton onClick={() => { setAddFoodOpen(true); }}>
                 <AddCircleOutline htmlColor='#0072e5' />
             </IconButton>
+
+            {/* TODO: Make dialog it's own component perhaps from a hook to control open or closed */}
             <Dialog open={addFoodOpen} onClose={handleClose}>
                 <DialogTitle>
                     Add Food
