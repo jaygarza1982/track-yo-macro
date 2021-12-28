@@ -7,6 +7,10 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
     const formik = useFormik({
         initialValues: {
             name: food?.name || '',
+            calories: food?.calories || '',
+            protein: food?.protein || '',
+            fat: food?.fat || '',
+            carbs: food?.carbs || '',
             description: food?.description || '',
         },
         onSubmit: values => {
@@ -21,6 +25,38 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 name={'name'}
                 label={'Name'}
                 value={formik.values.name}
+                onChange={formik.handleChange}
+                autoComplete='off'
+            />
+            <TextField
+                name={'calories'}
+                label={'Calories'}
+                type={'number'}
+                value={formik.values.calories}
+                onChange={formik.handleChange}
+                autoComplete='off'
+            />
+            <TextField
+                name={'protein'}
+                label={'Protein'}
+                type={'number'}
+                value={formik.values.protein}
+                onChange={formik.handleChange}
+                autoComplete='off'
+            />
+            <TextField
+                name={'fat'}
+                label={'Fat'}
+                type={'number'}
+                value={formik.values.fat}
+                onChange={formik.handleChange}
+                autoComplete='off'
+            />
+            <TextField
+                name={'carbs'}
+                label={'Carbs'}
+                type={'number'}
+                value={formik.values.carbs}
                 onChange={formik.handleChange}
                 autoComplete='off'
             />
