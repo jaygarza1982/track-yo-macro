@@ -1,8 +1,10 @@
 import { IconButton } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import CustomList from '../CustomList/CustomList';
 import { AddCircleOutline } from '@mui/icons-material';
 import axios from 'axios';
+import useDialog from '../Hooks/useDialog';
+import FoodEdit from './FoodEdit';
 
 const FoodList = ({ foods }) => {
 
@@ -20,6 +22,16 @@ const FoodList = ({ foods }) => {
         }
     }
 
+    const [selectedFood, setSelectedFood] = useState({});
+    const [foodInfoDialog, setFoodInfoOpen] = useDialog('Food Info', <FoodEdit food={selectedFood} />);
+
+    const showFood = food => {
+        return () => {
+            setSelectedFood(food);
+            setFoodInfoOpen(true);
+        }
+    }
+
     return (
         <div className='food-list'>
             <CustomList
@@ -28,8 +40,7 @@ const FoodList = ({ foods }) => {
                         return {
                             display: food.name,
                             key: food._id,
-                            // TODO: Dialog box with food info
-                            action: () => { console.log('Food clicked', food); },
+                            action: showFood(food),
                             secondaryAction: (
                                 <IconButton onClick={() => { consumeFood(food); }}>
                                     <AddCircleOutline />
@@ -39,6 +50,8 @@ const FoodList = ({ foods }) => {
                     })
                 }
             />
+
+            {foodInfoDialog}
         </div>
     );
 }
