@@ -2,7 +2,8 @@ import React from 'react';
 
 const ConsumedInfo = ({ food }) => {
 
-    const { calories, protein, carbs } = food;
+    // If food is undefined
+    const { calories, protein, carbs } = (food || {});
 
     return (
         <div className='consumed-info'>
