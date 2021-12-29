@@ -21,12 +21,15 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
 
     return (
         <div className='food-edit'>
+            {/* TODO: Function to generate a textfield for reuse and cleaner code
+            So genText('Name') would make a textfield with the required formik as well as autocomplete off and onFocus set */}
             <TextField
                 name={'name'}
                 label={'Name'}
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 autoComplete='off'
+                onFocus={e => e.target.select()}
             />
             <TextField
                 name={'calories'}
@@ -35,6 +38,7 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 value={formik.values.calories}
                 onChange={formik.handleChange}
                 autoComplete='off'
+                onFocus={e => e.target.select()}
             />
             <TextField
                 name={'protein'}
@@ -43,6 +47,7 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 value={formik.values.protein}
                 onChange={formik.handleChange}
                 autoComplete='off'
+                onFocus={e => e.target.select()}
             />
             <TextField
                 name={'fat'}
@@ -51,6 +56,7 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 value={formik.values.fat}
                 onChange={formik.handleChange}
                 autoComplete='off'
+                onFocus={e => e.target.select()}
             />
             <TextField
                 name={'carbs'}
@@ -59,7 +65,9 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 value={formik.values.carbs}
                 onChange={formik.handleChange}
                 autoComplete='off'
+                onFocus={e => e.target.select()}
             />
+            {/* TODO: Make multi line */}
             <TextField
                 name={'description'}
                 label={'Description'}
