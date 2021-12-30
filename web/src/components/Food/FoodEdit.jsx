@@ -14,65 +14,40 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
             description: food?.description || '',
         },
         onSubmit: values => {
+            console.log(values);
             if (submit) submit(values);
             if (submitCallback) submitCallback();
         }
     });
 
+    const genTextfield = (label, name, type, autoSelect) => {
+        return (
+            <TextField
+                name={name}
+                label={label}
+                type={type || 'text'}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                autoComplete='off'
+                onFocus={autoSelect ? e => e.target.select() : undefined}
+            />
+        )
+    }
+
     return (
         <div className='food-edit'>
-            {/* TODO: Function to generate a textfield for reuse and cleaner code
-            So genText('Name') would make a textfield with the required formik as well as autocomplete off and onFocus set */}
-            <TextField
-                name={'name'}
-                label={'Name'}
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                autoComplete='off'
-                onFocus={e => e.target.select()}
-            />
-            <TextField
-                name={'calories'}
-                label={'Calories'}
-                type={'number'}
-                value={formik.values.calories}
-                onChange={formik.handleChange}
-                autoComplete='off'
-                onFocus={e => e.target.select()}
-            />
-            <TextField
-                name={'protein'}
-                label={'Protein'}
-                type={'number'}
-                value={formik.values.protein}
-                onChange={formik.handleChange}
-                autoComplete='off'
-                onFocus={e => e.target.select()}
-            />
-            <TextField
-                name={'fat'}
-                label={'Fat'}
-                type={'number'}
-                value={formik.values.fat}
-                onChange={formik.handleChange}
-                autoComplete='off'
-                onFocus={e => e.target.select()}
-            />
-            <TextField
-                name={'carbs'}
-                label={'Carbs'}
-                type={'number'}
-                value={formik.values.carbs}
-                onChange={formik.handleChange}
-                autoComplete='off'
-                onFocus={e => e.target.select()}
-            />
-            {/* TODO: Make multi line */}
+            {genTextfield('Name', 'name', 'text', true)}
+            {genTextfield('Calories', 'calories', 'number', true)}
+            {genTextfield('Protein', 'protein', 'number', true)}
+            {genTextfield('Fat', 'fat', 'number', true)}
+            {genTextfield('Carbs', 'carbs', 'number', true)}
+
             <TextField
                 name={'description'}
                 label={'Description'}
                 value={formik.values.description}
                 onChange={formik.handleChange}
+                multiline
                 autoComplete='off'
             />
             <Button onClick={formik.handleSubmit}>OK</Button>
