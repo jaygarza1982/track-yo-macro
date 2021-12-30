@@ -19,6 +19,7 @@ const ConsumedList = ({ foods, consumed }) => {
 
     return (
         <div className='consumed-list'>
+            {/* TODO: Message if consumed is empty or undefined like 'Nothing consumed for this date' */}
             <CustomList
                 items={
                     consumed?.map(c => {
@@ -28,7 +29,7 @@ const ConsumedList = ({ foods, consumed }) => {
                             display: mappedFood?.name,
                             key: c._id,
                             action: showFood(mappedFood),
-                            secondaryAction: <ConsumedInfo food={mappedFood} />
+                            secondaryAction: <ConsumedInfo consumed={c} food={mappedFood} />
                         }
                     })
                 }
