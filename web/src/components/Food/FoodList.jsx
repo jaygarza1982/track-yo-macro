@@ -9,6 +9,7 @@ import FoodEdit from './FoodEdit';
 const FoodList = ({ foods }) => {
 
     const consumeFood = async food => {
+        // TODO: Show snackbar of success
         try {
             const consumed = {
                 foodId: food?._id,
