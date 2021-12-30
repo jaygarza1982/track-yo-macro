@@ -48,6 +48,7 @@ const Consumed = () => {
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
+            {/* TODO: Macro info here with calories, protein, fat, carbs */}
             <ConsumedList
                 foods={foods}
                 consumed={consumedFiltered}
