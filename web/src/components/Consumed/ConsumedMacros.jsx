@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ConsumedMacro = ({ title, value, target }) => {
     return (
         <div className='consumed-macro'>
-            <h1>{value} / {target || 0}</h1>
+            <h4>{value} / {target || 0}</h4>
             <h4>{title}</h4>
         </div>
     )
