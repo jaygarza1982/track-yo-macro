@@ -44,3 +44,9 @@ h1 {
 .custom-list-item {
   margin: 8px 0px 8px 0px;
 }
+
+.consumed-macros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}

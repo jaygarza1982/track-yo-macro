@@ -6,6 +6,7 @@ import { TextField } from '@mui/material';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useEffect } from 'react';
+import ConsumedMacros from './ConsumedMacros';
 
 const Consumed = () => {
 
@@ -49,6 +50,10 @@ const Consumed = () => {
                 />
             </LocalizationProvider>
             {/* TODO: Macro info here with calories, protein, fat, carbs */}
+            <ConsumedMacros
+                foods={foods}
+                consumed={consumedFiltered}
+            />
             <ConsumedList
                 foods={foods}
                 consumed={consumedFiltered}

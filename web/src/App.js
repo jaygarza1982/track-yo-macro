@@ -13,10 +13,12 @@ import Consumed from './components/Consumed/Consumed';
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/consumed' element={<Consumed />} />
-      </Routes>
+      <div className='main'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/consumed' element={<Consumed />} />
+        </Routes>
+      </div>
       <NavContainer />
     </Router>
   );
