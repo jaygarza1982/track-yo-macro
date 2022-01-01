@@ -41,15 +41,16 @@ const Consumed = () => {
     return (
         <div className='consumed'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <MobileDatePicker
-                    label="Date Consumed"
-                    inputFormat="MM/dd/yyyy"
-                    value={consumedDate}
-                    onChange={handleDateChange}
-                    renderInput={(params) => <TextField {...params} />}
-                />
+                <div style={{ padding: 10 }}>
+                    <MobileDatePicker
+                        label="Date Consumed"
+                        inputFormat="MM/dd/yyyy"
+                        value={consumedDate}
+                        onChange={handleDateChange}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                </div>
             </LocalizationProvider>
-            {/* TODO: Macro info here with calories, protein, fat, carbs */}
             <ConsumedMacros
                 foods={foods}
                 consumed={consumedFiltered}
