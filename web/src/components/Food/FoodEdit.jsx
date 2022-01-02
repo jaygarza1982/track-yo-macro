@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import FoodChart from './FoodChart';
 
 const FoodEdit = ({ food, submit, submitCallback }) => {
 
@@ -50,6 +51,9 @@ const FoodEdit = ({ food, submit, submitCallback }) => {
                 multiline
                 autoComplete='off'
             />
+
+            <FoodChart food={food} />
+
             <Button onClick={formik.handleSubmit}>OK</Button>
         </div>
     );
