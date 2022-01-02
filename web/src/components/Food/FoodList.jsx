@@ -23,8 +23,12 @@ const FoodList = ({ foods }) => {
         }
     }
 
+    const closeFood = () => {
+        setFoodInfoOpen(false);
+    }
+
     const [selectedFood, setSelectedFood] = useState({});
-    const [foodInfoDialog, setFoodInfoOpen] = useDialog('Food Info', <FoodEdit food={selectedFood} />);
+    const [foodInfoDialog, setFoodInfoOpen] = useDialog('Food Info', <FoodEdit submitCallback={closeFood} food={selectedFood} />);
 
     const showFood = food => {
         return () => {

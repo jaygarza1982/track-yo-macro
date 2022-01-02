@@ -14,9 +14,9 @@ export default (title, toRender) => {
             <DialogTitle>
                 {title}
             </DialogTitle>
-            <Paper>
+            <div style={{ padding: 15 }}>
                 {toRender}
-            </Paper>
+            </div>
         </Dialog>
     )
 

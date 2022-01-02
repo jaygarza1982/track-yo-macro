@@ -7,16 +7,20 @@ import { useState } from 'react';
 import { Box, Divider, ListItem, ListItemButton } from '@mui/material';
 
 const ConsumedList = ({ foods, consumed }) => {
-
-    const [selectedFood, setSelectedFood] = useState({});
-    const [foodInfoDialog, setFoodInfoOpen] = useDialog('Food Info', <FoodEdit food={selectedFood} />);
-
+    
     const showFood = food => {
         return () => {
             setSelectedFood(food);
             setFoodInfoOpen(true);
         }
     }
+
+    const hideFood = () => {
+        setFoodInfoOpen(false);
+    }
+
+    const [selectedFood, setSelectedFood] = useState({});
+    const [foodInfoDialog, setFoodInfoOpen] = useDialog('Food Info', <FoodEdit submitCallback={hideFood} food={selectedFood} />);
 
     const items = consumed?.map(c => {
         const mappedFood = foods?.find(food => food._id == c.foodId);
