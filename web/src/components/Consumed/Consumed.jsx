@@ -26,7 +26,7 @@ const Consumed = () => {
 
         // Filter consumed food by selected date
         setConsumedFiltered(
-            consumed.filter(c => {
+            consumed?.filter(c => {
                 const { timeConsumedEpoch } = c;
                 const consumedDate = new Date(timeConsumedEpoch);
 
