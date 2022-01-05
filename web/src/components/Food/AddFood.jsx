@@ -26,11 +26,12 @@ const AddFood = ({ reloadFoods }) => {
     const [foodDialog, foodDialogOpen] = useDialog('Add Food', foodEdit);
 
     return (
-        <div className='add-food'>
-            <IconButton onClick={() => { foodDialogOpen(true); }}>
-                <AddCircleOutline htmlColor='#0072e5' />
-            </IconButton>
-            
+        <div className='add-food-container'>
+            <div className='add-food-button'>
+                <IconButton onClick={() => { foodDialogOpen(true); }}>
+                    <AddCircleOutline htmlColor='#0072e5' />
+                </IconButton>
+            </div>
             {foodDialog}
         </div>
     );

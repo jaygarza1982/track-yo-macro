@@ -31,14 +31,19 @@ h1 {
   font-size: 2.5rem !important;
 }
 
-.add-food {
+.add-food-container {
   position: fixed;
-  bottom: 60px;
-  right: 30px;
+  bottom: 55px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.add-food-button {
+  float: right;
 }
 
 .custom-list {
-  margin-bottom: 57px;
+  margin-bottom: 120px;
 }
 
 .custom-list-item {
