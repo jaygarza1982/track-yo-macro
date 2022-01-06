@@ -5,10 +5,7 @@ const FoodSearch = ({ foods, setShownFoods }) => {
 
     const [search, setSearch] = useState('');
 
-    const handleSearchChange = e => {
-        const { value } = e.target;
-        setSearch(value);
-
+    const foodSearch = value => {
         // Show all foods if empty search
         if (value?.trim() == '') {
             setShownFoods(foods);
@@ -26,6 +23,12 @@ const FoodSearch = ({ foods, setShownFoods }) => {
         });
 
         setShownFoods(matchedFoods);
+    }
+
+    const handleSearchChange = e => {
+        const { value } = e.target;
+        setSearch(value);
+        foodSearch(value);
     }
 
     return (
