@@ -3,11 +3,17 @@ import AddFood from '../Food/AddFood';
 import FoodList from '../Food/FoodList';
 import useFetch from '../Hooks/useFetch';
 import FoodSearch from '../Search/FoodSearch';
+import authGenerate from '../../services/auth-generator';
 
 const Home = () => {
 
     const [foods, failedFoods, loadFoods] = useFetch('/api/food/list');
     const [shownFoods, setShownFoods] = useState([]);
+
+    // Generate an auth token to uniquely identify user without login
+    useEffect(() => {
+        authGenerate();
+    }, []);
 
     // Show all foods on load
     useEffect(() => {
