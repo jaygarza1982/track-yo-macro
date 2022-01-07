@@ -24,6 +24,7 @@ func main() {
 		c.JSON(200, gin.H{"message": status})
 	})
 
+	// TODO: Middlewear for auth tokens
 	ginServer.GET("/api/food/list", controllers.ListFood(config))
 	ginServer.POST("/api/food/add", controllers.AddFood(config))
 	ginServer.GET("/api/consumed/list", controllers.ListConsumed(config))

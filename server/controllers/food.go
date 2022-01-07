@@ -15,6 +15,15 @@ func ListFood(config *config.Config) func(ctx *gin.Context) {
 	foodCollection := config.Database.Collection("food")
 
 	return func(ctx *gin.Context) {
+
+		// Obtain authorization token
+		authTokenSlice := ctx.Request.Header["Authorization"]
+		var authToken string
+		if len(authTokenSlice) != 0 {
+			authToken = authTokenSlice[0]
+		}
+
+		// TODO: Put where "owner": authToken
 		cur, err := foodCollection.Find(context.TODO(), bson.M{})
 		if err != nil {
 			panic(err)

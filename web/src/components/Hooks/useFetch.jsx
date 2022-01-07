@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default url => {
+export default (url, axiosHeaders) => {
     const [returnData, setData] = useState([]);
     const [failed, setFailed] = useState(false);
 
     const load = async () => {
         try {
-            const { data } = await axios.get(url);
+            // Pass axios headers if exists, pass nothing if not
+            const { data } = await axios.get(url, axiosHeaders ? { headers: axiosHeaders } : undefined);
 
             setData(data);
         } catch (error) {
