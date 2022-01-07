@@ -21,6 +21,8 @@ func ListFood(config *config.Config) func(ctx *gin.Context) {
 		var authToken string
 		if len(authTokenSlice) != 0 {
 			authToken = authTokenSlice[0]
+			// TODO: Remove this line later
+			fmt.Println("Auth token got", authToken)
 		}
 
 		// TODO: Put where "owner": authToken

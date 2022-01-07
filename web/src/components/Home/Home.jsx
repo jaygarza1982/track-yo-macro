@@ -7,7 +7,9 @@ import authGenerate from '../../services/auth-generator';
 
 const Home = () => {
 
-    const [foods, failedFoods, loadFoods] = useFetch('/api/food/list');
+    const [foods, failedFoods, loadFoods] = useFetch('/api/food/list', {
+        'Authorization': window.localStorage.getItem('authToken')
+    });
     const [shownFoods, setShownFoods] = useState([]);
 
     // Generate an auth token to uniquely identify user without login
