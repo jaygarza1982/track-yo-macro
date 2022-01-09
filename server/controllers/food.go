@@ -16,17 +16,9 @@ func ListFood(config *config.Config) func(ctx *gin.Context) {
 
 	return func(ctx *gin.Context) {
 
-		// Obtain authorization token
-		authTokenSlice := ctx.Request.Header["Authorization"]
-		var authToken string
-		if len(authTokenSlice) != 0 {
-			authToken = authTokenSlice[0]
-			// TODO: Remove this line later
-			fmt.Println("Auth token got", authToken)
-		}
+		authToken := GetAuthString(ctx)
 
-		// TODO: Put where "owner": authToken
-		cur, err := foodCollection.Find(context.TODO(), bson.M{})
+		cur, err := foodCollection.Find(context.TODO(), bson.M{"owner": authToken})
 		if err != nil {
 			panic(err)
 		}
@@ -59,6 +51,7 @@ func AddFood(config *config.Config) func(ctx *gin.Context) {
 		}
 
 		food.ID = primitive.NewObjectID()
+		food.Owner = GetAuthString(ctx)
 
 		res, err := foodCollection.InsertOne(context.TODO(), food)
 

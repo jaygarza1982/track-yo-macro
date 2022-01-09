@@ -13,7 +13,11 @@ const AddFood = ({ reloadFoods }) => {
         <FoodEdit
             submit={async values => {
                 try {
-                    await axios.post('/api/food/add', values);
+                    await axios.post('/api/food/add', values, {
+                        headers: {
+                            'Authorization': window.localStorage.getItem('authToken')
+                        }
+                    });
                     if (reloadFoods) reloadFoods();
                 } catch (error) {
                     console.log('Could not submit food edit', error);

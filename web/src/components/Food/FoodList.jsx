@@ -17,7 +17,11 @@ const FoodList = ({ foods }) => {
                 timeConsumedEpoch: new Date().getTime(),
             }
 
-            await axios.post('/api/consumed/add', consumed);
+            await axios.post('/api/consumed/add', consumed, {
+                headers: {
+                    'Authorization': window.localStorage.getItem('authToken')
+                }
+            });
         } catch (error) {
             console.log('Could not consume food', error);
         }

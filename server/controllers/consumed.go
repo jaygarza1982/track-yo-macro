@@ -15,7 +15,10 @@ func ListConsumed(config *config.Config) func(ctx *gin.Context) {
 	consumedCollection := config.Database.Collection("consumed")
 
 	return func(ctx *gin.Context) {
-		cur, err := consumedCollection.Find(context.TODO(), bson.M{})
+
+		authString := GetAuthString(ctx)
+
+		cur, err := consumedCollection.Find(context.TODO(), bson.M{"owner": authString})
 		if err != nil {
 			panic(err)
 		}
@@ -47,7 +50,10 @@ func AddConsumed(config *config.Config) func(ctx *gin.Context) {
 			panic(err)
 		}
 
+		authString := GetAuthString(ctx)
+
 		consumed.ID = primitive.NewObjectID()
+		consumed.Owner = authString
 
 		res, err := consumedCollection.InsertOne(context.TODO(), consumed)
 

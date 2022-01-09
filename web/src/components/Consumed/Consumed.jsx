@@ -10,8 +10,12 @@ import ConsumedMacros from './ConsumedMacros';
 
 const Consumed = () => {
 
-    const [foods] = useFetch('/api/food/list');
-    const [consumed,, loadConsumed] = useFetch('/api/consumed/list');
+    const [foods] = useFetch('/api/food/list', {
+        'Authorization': window.localStorage.getItem('authToken')
+    });
+    const [consumed,, loadConsumed] = useFetch('/api/consumed/list', {
+        'Authorization': window.localStorage.getItem('authToken')
+    });
 
     const [consumedFiltered, setConsumedFiltered] = useState(consumed);
     const [consumedDate, setConsumedDate] = useState(new Date());
