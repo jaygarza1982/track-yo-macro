@@ -65,3 +65,24 @@ func AddConsumed(config *config.Config) func(ctx *gin.Context) {
 		ctx.JSON(200, res)
 	}
 }
+
+func DeleteConsumed(config *config.Config) func(ctx *gin.Context) {
+	consumedCollection := config.Database.Collection("consumed")
+
+	return func(ctx *gin.Context) {
+		var consumed models.Consumed
+
+		if err := ctx.BindJSON(&consumed); err != nil {
+			panic(err)
+		}
+
+		authString := GetAuthString(ctx)
+
+		res, err := consumedCollection.DeleteOne(context.TODO(), bson.M{"_id": consumed.ID, "owner": authString})
+		if err != nil {
+			panic(err)
+		}
+
+		ctx.JSON(200, res)
+	}
+}

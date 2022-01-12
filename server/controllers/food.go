@@ -63,3 +63,24 @@ func AddFood(config *config.Config) func(ctx *gin.Context) {
 		ctx.JSON(200, res)
 	}
 }
+
+func DeleteFood(config *config.Config) func(ctx *gin.Context) {
+	foodCollection := config.Database.Collection("food")
+
+	return func(ctx *gin.Context) {
+		var food models.Food
+
+		if err := ctx.BindJSON(&food); err != nil {
+			panic(err)
+		}
+
+		authString := GetAuthString(ctx)
+
+		res, err := foodCollection.DeleteOne(context.TODO(), bson.M{"_id": food.ID, "owner": authString})
+		if err != nil {
+			panic(err)
+		}
+
+		ctx.JSON(200, res)
+	}
+}

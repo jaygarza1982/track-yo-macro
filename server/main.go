@@ -27,8 +27,10 @@ func main() {
 	// TODO: Middlewear for auth tokens
 	ginServer.GET("/api/food/list", controllers.ListFood(config))
 	ginServer.POST("/api/food/add", controllers.AddFood(config))
+	ginServer.POST("/api/food/delete", controllers.DeleteFood(config))
 	ginServer.GET("/api/consumed/list", controllers.ListConsumed(config))
 	ginServer.POST("/api/consumed/add", controllers.AddConsumed(config))
+	ginServer.POST("/api/consumed/delete", controllers.DeleteConsumed(config))
 
 	ginServer.Run(":8080")
 }
