@@ -25,7 +25,7 @@ const Home = () => {
     return (
         <div className='home'>
             <FoodSearch foods={foods} setShownFoods={setShownFoods} />
-            { !failedFoods && <FoodList foods={shownFoods} /> }
+            { !failedFoods && <FoodList foods={shownFoods} reloadFoods={loadFoods} /> }
             <AddFood reloadFoods={loadFoods} />
         </div>
     )

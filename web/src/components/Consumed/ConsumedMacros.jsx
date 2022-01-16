@@ -36,10 +36,10 @@ const ConsumedMacros = ({ foods, consumed }) => {
             mappedFood.forEach(f => {
                 newMacros = {
                     // Foods do not have to have every macro, so we default to 0 if missing
-                    calories: newMacros.calories + (f.calories || 0),
-                    protein: newMacros.protein + (f.protein || 0),
-                    fat: newMacros.fat + (f.fat || 0),
-                    carbs: newMacros.carbs + (f.carbs || 0),
+                    calories: newMacros?.calories + (f?.calories || 0),
+                    protein: newMacros?.protein + (f?.protein || 0),
+                    fat: newMacros?.fat + (f?.fat || 0),
+                    carbs: newMacros?.carbs + (f?.carbs || 0),
                 }
             });
             
@@ -51,22 +51,22 @@ const ConsumedMacros = ({ foods, consumed }) => {
         <div className='consumed-macros'>
             <ConsumedMacro
                 title={'Calories'}
-                value={macros.calories}
+                value={macros?.calories}
                 target={2000}
             />
             <ConsumedMacro
                 title={'Protein'}
-                value={macros.protein}
+                value={macros?.protein}
                 target={180}
             />
             <ConsumedMacro
                 title={'Fat'}
-                value={macros.fat}
+                value={macros?.fat}
                 target={65}
             />
             <ConsumedMacro
                 title={'Carbs'}
-                value={macros.carbs}
+                value={macros?.carbs}
                 target={250}
             />
         </div>
